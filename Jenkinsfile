@@ -38,6 +38,22 @@ pipeline {
       }
     }
 
+    stage('docker build') {
+      steps {
+        script {
+          docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin1') {
+
+            def dockerImage = docker.build("xxxxxx/sysfoo:v${env.BUILD_ID}", "./")
+
+            dockerImage.push()
+
+            dockerImage.push("latest")
+          }
+        }
+
+      }
+    }
+
   }
   tools {
     maven 'Maven 3.6.3'
