@@ -43,7 +43,7 @@ pipeline {
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin1') {
 
-            def dockerImage = docker.build("xxxxxx/sysfoo:v${env.BUILD_ID}", "./")
+            def dockerImage = docker.build("alpiagarwal/sysfoo:v${env.BUILD_ID}", "./")
 
             dockerImage.push()
 
